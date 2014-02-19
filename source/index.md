@@ -1,181 +1,127 @@
 ---
-title: API Reference
+title: Nutrio Web Services
 
 language_tabs:
-  - shell
-  - ruby
-  - python
+  - curl
 
 toc_footers:
- - <a href='#'>Sign Up for a Developer Key</a>
+ - <a href='http://www.nutrio.com'>Nutrio</a>
  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Nutrio Web Services offers an HTTP API leveraging the standards of REST, CRUD, and JSON.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+The following documentation implementation examples use the Backbone.js library.
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+This API documentation page was created with [Slate](http://github.com/tripit/slate).
+
+# Getting Started
+
+Brief summary on how to get started goes here.
+
 
 # Authentication
 
-> To authorize, use this code:
+## Cobrand Authentication
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+In order to access the Nutrio API and act on the behalf of a Cobrand, you need to use the access key provided by Nutrio. This key should be kept secret by the Cobrand. This key is only for access between the Cobrand's servers and the Nutrio API. Never embed this key into a page delivered to a user's browser. Never pass this key over a non-SSL/HTTPS connection. The Cobrand API key is to be passed as the "username" part of an HTTP Authentication request. The "password" part is used for the user API key when appropriate, but can be left blank."
 
-```python
-import 'kittn'
+## User Hand-Off
 
-api = Kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
+Hand off a user session from the client web site to the Nutrio web site.
 
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`POST https://api.nutrio.com/api/v1/user_handoff_tokens`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter |  Description
+--------- |  -----------
+external_user_id | External User ID
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+```curl
+curl \
+--insecure \
+--verbose \
+--user "f1bcb4e1-967b-4ecd-8ffd-df62a5a7eb75:" \
+--header "Content-Type: application/json" \
+--data '{"external_user_id":"xyzzy"}' \
+"https://api.nutrio.com/api/v1/user_handoff_tokens"
 ```
 
-```python
-import 'kittn'
+<aside class="warning">Your Cobrand API key is to be passed as the "username" part of an HTTP Authentication request.</aside>
 
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
+> Request Sample
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "external_user_id": "xyzzy"
 }
 ```
 
-This endpoint retrieves a specific kitten.
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+> Response Sample
 
-### HTTP Request
+```json
+{
+    "external_user_id": "xyzzy",
+    "guid": "22f396c373fd4161837f0143b32dace0"
+}
+```
 
-`GET http://example.com/kittens/<ID>`
+# Reference
 
-### URL Parameters
+## API V1
 
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
+###User
+###User Authentication
+###User Profile
+###User Meal Ratings
+###User Meal Favorites
+###User Weight Loss Goal Cycles
+###User Weights (Batch)
 
-# Errors
+###Calculators
+###BMI Calculator
+###Calorie Burn Calculator
+###Daily Calorie Target Calculator
 
-The Kittn API uses the following error codes:
+###Weight Log
+###Weight Tracker Entries
+
+###Activity Log
+###Activity Log Entries
+###Activity Search Autocomplete
+
+###Food Log
+###Food Log Entries
+###Food Log Nutrients for Day
+###Food Log Recipe Search Autocomplete
+###Food Log Natural Language Parsing
+
+###Meals, Recipes, Foods
+###Foods (Ingredients)
+###Recipe Search by Keywords
+###Recipe Search by Categories
+###Food Analyzer
+###Meal ID Translator
+
+## API V2
+
+# Guide
+
+##Proxies
+##Nutritional Information 
 
 
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slown down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
+# Tutorials
+
+##How to convert decimals to fractions 
+##How to convert minutes to hours 
+##How to determine when to use the plural version of a name
+##How to make a string lower-case
+##How to convert dates to/from YYYYMMDD format
