@@ -1,10 +1,13 @@
 ---
-title: Nutrio Web Services
+title: Getting Started
 
 language_tabs:
   - curl
 
 toc_footers:
+ - <a href='/'>Getting Started</a>
+ - <a href='/tutorials/'>Tutorials</a>
+ - <a href='/reference/'>API Reference</a>
  - <a href='http://www.nutrio.com'>Nutrio</a>
  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 ---
@@ -72,56 +75,3 @@ curl \
     "guid": "22f396c373fd4161837f0143b32dace0"
 }
 ```
-
-# Reference
-
-## API V1
-
-###User
-###User Authentication
-###User Profile
-###User Meal Ratings
-###User Meal Favorites
-###User Weight Loss Goal Cycles
-###User Weights (Batch)
-
-###Calculators
-###BMI Calculator
-###Calorie Burn Calculator
-###Daily Calorie Target Calculator
-
-###Weight Log
-###Weight Tracker Entries
-
-###Activity Log
-###Activity Log Entries
-###Activity Search Autocomplete
-
-###Food Log
-###Food Log Entries
-###Food Log Nutrients for Day
-###Food Log Recipe Search Autocomplete
-###Food Log Natural Language Parsing
-
-###Meals, Recipes, Foods
-###Foods (Ingredients)
-###Recipe Search by Keywords
-###Recipe Search by Categories
-###Food Analyzer
-###Meal ID Translator
-
-## API V2
-
-# Guide
-
-##Proxies
-##Nutritional Information 
-
-
-# Tutorials
-
-##How to convert decimals to fractions 
-##How to convert minutes to hours 
-##How to determine when to use the plural version of a name
-##How to make a string lower-case
-##How to convert dates to/from YYYYMMDD format
