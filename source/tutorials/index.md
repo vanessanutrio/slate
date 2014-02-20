@@ -6,8 +6,8 @@ language_tabs:
 
 toc_footers:
  - <a href='/'>Getting Started</a>
- - <a href='/tutorials/'>Tutorials</a>
  - <a href='/reference/'>API Reference</a>
+ - <a href='/tutorials/'>Tutorials</a>
  - <a href='http://www.nutrio.com'>Nutrio</a>
  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 ---
